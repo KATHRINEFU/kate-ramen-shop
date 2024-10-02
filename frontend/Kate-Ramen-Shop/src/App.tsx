@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css"
+
+import React, { useEffect, useState } from 'react';
+import MenuPage from './pages/MenuPage';
+import { FaShoppingCart } from 'react-icons/fa'; // Import shopping cart icon
+
+type RamenOrder = {
+  name: string;
+  image: string;
+  meat: string;
+  spicyLevel: string;
+  noodleType: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cartCount, setCartCount] = useState(0);
+  const [orders, setOrders] = useState<RamenOrder[]>([]);
+
+  const handleAddToCart = (order: RamenOrder) => {
+    setOrders([...orders, order]);
+  };
+
+  useEffect(() => {
+    setCartCount(orders.length)
+  }, [orders]);
 
   return (
     <>
+      <div style={cartContainerStyle}>
+        <FaShoppingCart style={cartIconStyle} />
+        {cartCount > 0 && (
+          <div style={cartCountStyle}>{cartCount}</div>
+        )}
+      </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Kate Ramen Shop</h1>
+        <h2>Welcome and enjoy your ramen</h2>
+        <MenuPage onAddToCart={handleAddToCart} /> 
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+const cartContainerStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '20px',
+  right: '20px',
+  cursor: 'pointer',
+};
+
+const cartIconStyle: React.CSSProperties = {
+  fontSize: '32px',
+  color: '#000',
+};
+
+const cartCountStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: '-8px',
+  right: '-8px',
+  backgroundColor: 'red',
+  borderRadius: '50%',
+  color: 'white',
+  width: '20px',
+  height: '20px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '12px',
+};
+
+export default App;

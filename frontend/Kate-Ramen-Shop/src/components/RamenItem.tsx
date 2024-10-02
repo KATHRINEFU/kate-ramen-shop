@@ -8,8 +8,8 @@ type RamenItemProps = {
 
 const RamenItem: React.FC<RamenItemProps> = ({ name, image, onClick }) => {
   return (
-    <div onClick={onClick} style={{ cursor: 'pointer', margin: '10px' }}>
-      <img src={image} alt={name} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+    <div onClick={onClick} style={{ cursor: 'pointer', margin: '10px', padding: '20px', textAlign: 'center', width: '120px' }}>
+      <img src={image} alt={name} style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '8px' }} />
       <p>{name}</p>
     </div>
   );
