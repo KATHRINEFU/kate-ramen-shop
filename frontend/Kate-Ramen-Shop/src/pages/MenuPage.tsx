@@ -8,7 +8,7 @@ type MenuPageProps = {
 
   
 const MenuPage: React.FC<MenuPageProps> = ({ onAddToCart }) => {
-  const [selectedRamen, setSelectedRamen] = useState({ name: 'Shoyu Ramen', image: ramen1 },);
+  const [selectedRamen, setSelectedRamen] = useState({ id: 1, name: 'Shoyu Ramen', image: ramen1 },);
 
   const handleRamenSelect = (ramen: typeof selectedRamen) => {
     setSelectedRamen(ramen);
@@ -16,7 +16,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ onAddToCart }) => {
 
   return (
     <div>
-      <SelectedRamen name={selectedRamen.name} image={selectedRamen.image}  onAddToCart={onAddToCart}/>
+      <SelectedRamen id={selectedRamen.id} name={selectedRamen.name} image={selectedRamen.image}  onAddToCart={onAddToCart}/>
       <MenuSlider onRamenSelect={handleRamenSelect} />
     </div>
   );

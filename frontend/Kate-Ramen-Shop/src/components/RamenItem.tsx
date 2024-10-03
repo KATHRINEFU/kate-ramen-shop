@@ -1,6 +1,7 @@
 import React from 'react';
 
 type RamenItemProps = {
+  id: number;
   name: string;
   image: string;
   onClick: () => void;

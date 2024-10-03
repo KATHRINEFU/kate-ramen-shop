@@ -1,12 +1,14 @@
 import React, { useState }  from 'react';
 
 type SelectedRamenProps = {
+  id: number
   name: string;
   image: string;
   onAddToCart: (order: RamenOrder) => void;
 };
 
 type RamenOrder = {
+  id: number;
   name: string;
   image: string;
   meat: string;
@@ -14,13 +16,14 @@ type RamenOrder = {
   noodleType: string;
 };
 
-const SelectedRamen: React.FC<SelectedRamenProps> = ({ name, image, onAddToCart }) => {
+const SelectedRamen: React.FC<SelectedRamenProps> = ({ id, name, image, onAddToCart }) => {
   const [meat, setMeat] = useState('beef');
   const [spicyLevel, setSpicyLevel] = useState('regular');
   const [noodleType, setNoodleType] = useState('ramen');
 
   const handleAddToCart = () => {
     const order: RamenOrder = {
+      id,
       name,
       image,
       meat,
@@ -118,14 +121,13 @@ const nameStyle: React.CSSProperties = {
 
 
 const buttonStyle: React.CSSProperties = {
-  padding: '10px 20px',
   backgroundColor: '#FF885B',
-  border: 'none',
   borderRadius: '8px',
   color: '#fff',
   fontSize: '16px',
   cursor: 'pointer',
   marginTop: '10px',
+  justifyContent: 'center'
 };
 
 const labelStyle: React.CSSProperties = {
@@ -139,10 +141,11 @@ const labelStyle: React.CSSProperties = {
 const selectStyle: React.CSSProperties = {
   marginLeft: '10px',
   padding: '8px',
+  margin: '8px',
   fontSize: '16px',
   borderRadius: '4px',
-  flex: '1',
-  backgroundColor: '#557C56'
+  backgroundColor: '#557C56',
+  width: '100px'
 };
 
 export default SelectedRamen;
