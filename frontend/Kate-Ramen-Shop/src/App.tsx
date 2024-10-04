@@ -41,25 +41,27 @@ function App() {
   };
 
   const handlePlaceOrder = async () => {
-    console.log(orders)
-    // try {
-    //   const response = await fetch('http://localhost:8000', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(orders),
-    //   });
+    // console.log(orders)
+    try {
+      const requestBody = JSON.stringify(orders)
+      console.log(requestBody)
+      const response = await fetch('http://localhost:8000/order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orders),
+      });
 
-    //   if (response.ok) {
-    //     alert('Order placed successfully!');
-    //     setOrders([]);
-    //   } else {
-    //     alert('Failed to place the order. Please try again.');
-    //   }
-    // } catch (error) {
-    //   alert('Error occurred while placing the order.');
-    // }
+      if (response.ok) {
+        alert('Order placed successfully!');
+        setOrders([]);
+      } else {
+        alert('Failed to place the order. Please try again.');
+      }
+    } catch (error) {
+      alert('Error occurred while placing the order.');
+    }
   };
 
 

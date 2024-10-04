@@ -88,9 +88,10 @@ const CartPage: React.FC<CartPageProps> = ({ cartItems, onDeleteItem, onUpdateIt
         ))
       )}
 
+      {cartItems.length !== 0 && (      
         <button style={placeOrderButtonStyle} onClick={onPlaceOrder}>
-            Place Order
-        </button>
+          Place Order
+        </button>)}
     </div>
   );
 };

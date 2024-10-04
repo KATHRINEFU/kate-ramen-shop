@@ -17,7 +17,7 @@ const ramenList = [
   { id: 4,name: 'Spicy Ramen', image: ramen4 },
   { id: 5,name: 'Vegetarian Ramen', image: ramen5 },
   { id: 6,name: 'Seafood Ramen', image: ramen6 },
-  { id: 7,name: 'Butter Corn Ramen', image: ramen7 },
+  { id: 7,name: 'Butter Ramen', image: ramen7 },
   { id: 8,name: 'Garlic Ramen', image: ramen8 }
 ];
 

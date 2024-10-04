@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# Kate Ramen Shop
+This project is a full-stack application for a ramen shop. It includes a frontend built with Vite, React, and TypeScript and a backend built with Node.js and Express. The system allows users to select ramen, customize their orders (meat, spicy level, noodle type), and add them to a shopping cart. Once an order is placed, the backend processes the request, updates the inventory, and tracks sales.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Run Project
+### Pre requirement
+NodeJS, npm
 
-Currently, two official plugins are available:
+### run backend
+cd to the backend folder \
+run: npm install \
+run: npm run dev \
+\
+The backend server will be running on http://localhost:8000.
+### run frontend
+Open a new terminal and cd to the frontend folder \
+run: npm install \
+run: npm run dev \
+\
+The frontend will be running on http://localhost:5173.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## API Endpoints
+POST /order
+```
+{
+  [
+    { 
+      "id": 3
+      "name": "Tonkotsu Ramen", 
+      "meat": "pork", 
+      "spicyLevel": "regular", 
+      "noodleType": "ramen" 
+    }
+  ]
+}
+```
+Response:
+201: Order placed successfully
+400: Invalid order or out of stock
+\
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+GET /inventory
+```
+[
+  { "id": 1, "name": "Tonkotsu Ramen", "stock": 100 },
+  { "id": 2, "name": "Shoyu Ramen", "stock": 100 },
+  // ...
+]
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+GET /sales
 ```
+[
+  { "name": "Tonkotsu Ramen", "quantity": 10 },
+  { "name": "Shoyu Ramen", "quantity": 5 },
+  // ...
+]
+```
+
+
